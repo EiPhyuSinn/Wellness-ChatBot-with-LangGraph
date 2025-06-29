@@ -88,11 +88,14 @@ graph.add_node("physical",physical_agent)
 
 graph.add_edge(START,"classifier")
 graph.add_edge("classifier","router")
+
 graph.add_conditional_edges(
     "router",
     lambda state: state.get("next"),
-    {"mental","mental", "physical","physical"}
+    {"mental": "mental", "physical": "physical"}
 )
+
+
 graph.add_edge("mental",END)
 graph.add_edge("physical",END)
 
